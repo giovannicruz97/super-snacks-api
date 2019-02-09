@@ -1,0 +1,44 @@
+{
+  "name": "magic",
+  "version": "1.0.0",
+  "description": "Async ready node.js RESTful API boilerplate",
+  "main": "app.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jest",
+    "start": "node bin/server.js",
+    "start-dev": "./node_modules/.bin/nodemon bin/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giovannicruz97/magic.git"
+  },
+  "keywords": [
+    "api",
+    "restful",
+    "node",
+    "koa",
+    "async",
+    "boilerplate"
+  ],
+  "author": "Giovanni Cruz <giovanni.cruz97@hotmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giovannicruz97/magic/issues"
+  },
+  "homepage": "https://github.com/giovannicruz97/magic#readme",
+  "dependencies": {
+    "@koa/cors": "^2.2.3",
+    "dotenv": "^6.2.0",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-logger": "^3.2.0",
+    "koa-router": "^7.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.13.0",
+    "jest": "^24.1.0",
+    "nodemon": "^1.18.10",
+    "prettier-eslint": "^8.8.2",
+    "supertest": "^3.4.2"
+  }
+}

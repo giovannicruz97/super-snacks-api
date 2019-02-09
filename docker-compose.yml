@@ -1,0 +1,23 @@
+version: "2"
+services:
+  magic_app:
+    container_name: magic_app
+    command: bash -c "npm install && npm run start-dev"
+    build: .
+    volumes:
+      - .:/magic_app
+    depends_on:
+      - mongo
+    links:
+      - mongo
+    ports:
+      - "3000:3000"
+  mongo:
+    container_name: mongo
+    image: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=magic_db
+    volumes:
+      - ./mongo_data:/data/db
+    ports:
+      - "27017:27017"
