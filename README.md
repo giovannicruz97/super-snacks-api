@@ -19,8 +19,9 @@ B. **Default procedure**
 
 1. `git clone https://github.com/giovannicruz97/magic`
 2. `cd magic`
-3. `docker-compose up -d`
-4. To access magic's bash: `docker exec -it magic_app bash`
+3. Create a `.env` file based on already existing `.env.example`
+4. `docker-compose up -d`
+5. To access magic's bash: `docker exec -it magic_app bash`
 
 ## Contact
 
