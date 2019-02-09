@@ -2,7 +2,7 @@
 
 ![](https://media.giphy.com/media/12NUbkX6p4xOO4/giphy.gif)
 
-Magic was built with the porpouse to offer a quickstart to code RESTful APIs. It comes with MongoDB, Koa.JS and Jest. All of it shipped into a Docker infrastructure.
+Magic was built with the purpose to offer a quickstart to code RESTful APIs. It comes with MongoDB, Koa.JS and Jest. All of it shipped into a Docker infrastructure.
 
 ## Requirements
 
