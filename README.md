@@ -2,7 +2,7 @@
 
 ![](https://media.giphy.com/media/xT5LMW6nbTu8pUHZgA/giphy.gif)
 
-A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o fluxo de vendas das máquinas de snacks da Super Coffee MT LTDA. O acesso aos produtos dessas máquinas se dá, através de cartões magnéticos, os quais têm seus créditos renovados todos os dias, de acordo com o valor estabelecido em contrato.
+A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o fluxo de vendas das máquinas de snacks da Super Coffee MT LTDA. O acesso aos produtos dessas máquinas se dá, através de cartões magnéticos, os quais têm seus créditos renovados todos os dias, de acordo com o valor estabelecido em contrato. Devem-se instalados nas máquinas algum espécie de microcomputador (Raspiberry or Arduino) que consiga realizar as chamadas REST através da placa de interface via HTTP para a API. Além disso, esse microcomputador deve ser capaz de armazenar o token JWT para as posteriores chamadas à API.
 
 ## Requerimentos
 
