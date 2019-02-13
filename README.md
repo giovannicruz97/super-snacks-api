@@ -1,28 +1,40 @@
-# MAGIC
+# SUPER SNACKS API
 
 ![](https://media.giphy.com/media/12NUbkX6p4xOO4/giphy.gif)
 
-Magic was built with the purpose to offer a quickstart to code RESTful APIs. It comes with MongoDB, Koa.JS and Jest. All of it shipped into a Docker infrastructure.
+A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o fluxo de vendas das máquinas de snacks da Super Coffee MT LTDA. O acesso aos produtos dessas máquinas se dá, através de cartões magnéticos, os quais têm seus créditos renovados todos os dias, de acordo com o valor estabelecido em contrato.
 
-## Requirements
+## Requerimentos
 
 - [Docker](https://docs.docker.com/install/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
-## How to use it ?
+## Como Rodar ?
 
-A. **Yeoman**
-
-- **COMING SOON**
-
-B. **Default procedure**
-
-1. `git clone https://github.com/giovannicruz97/magic`
-2. `cd magic`
-3. Create a `.env` file based on already existing `.env.example`
+1. `git clone https://github.com/giovannicruz97/super-snacks-api`
+2. `cd /super-snacks-api`
+3. Crie um arquivo `.env` na raiz do projeto, baseado nas informações do arquivo `.env.example`
 4. `docker-compose up -d`
-5. To access magic's bash: `docker exec -it magic_app bash`
+5. Para acessar o bash do container da API, execute: `docker exec -it super-snacks-api bash`
 
-## Contact
+## Testes
 
-- If you want to help me improve this project, drink a coffe together or talk about job, contact me through my email: giovanni.cruz97@hotmail.com
+- Para executar os testes, execute: `docker exec super-snacks-api npm test`
+
+## Casos de uso
+
+- [ ] Autenticação via JWT por máquina
+- [ ] CRUD de máquinas
+- [ ] CRUD de produtos
+- [ ] CRUD de cartões
+- [ ] Lançamento de venda
+- [ ] Débito de saldo do cartão
+- [ ] Recarga de saldo de cartão
+
+## Rotas/Endpoints
+
+- A documentação das rotas podem ser visualizadas [aqui]('#')
+
+## Contato
+
+- Email: giovanni.cruz97@hotmail.com
