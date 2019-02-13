@@ -23,12 +23,20 @@ A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o flux
 
 ## Casos de uso
 
-- [ ] Autenticação via JWT por máquina
-- [ ] CRUD de máquinas
-- [ ] CRUD de produtos
-- [ ] CRUD de cartões
-- [ ] Lançamento de venda
-- [ ] Recarga de saldo de cartão
+- [x] Autenticação via JWT por máquina
+- [x] Cadastro de máquina
+- [ ] Atualização de máquina
+- [ ] Visualização de máquina
+- [ ] Remoção de máquina
+- [ ] Criação de produto
+- [ ] Atualização de produto
+- [ ] Visualização de produto
+- [ ] Remoção de produto
+- [ ] Cadastro de cartão
+- [ ] Remoção de cartão
+- [ ] Visualização de saldo do cartão
+- [ ] Recarga diária do saldo do cartão
+- [ ] Débito de créditos do cartão
 
 ## Coleções (MongoDB)
 
