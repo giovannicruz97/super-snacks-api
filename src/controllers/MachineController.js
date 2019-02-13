@@ -4,14 +4,13 @@ const hashService = require('../services/HashService');
 async function createMachine(ctx) {
   let postData = ctx.request.body;
   let foundMachine = await Machine.findOne({
-    name: postData.name,
-    location: postData.location
+    name: postData.name
   });
 
   if (foundMachine) {
     ctx.status = 400;
     ctx.body = {
-      message: 'Máquina já cadastrada nessa localidade'
+      message: 'Máquina já cadastrada'
     };
     return;
   }
