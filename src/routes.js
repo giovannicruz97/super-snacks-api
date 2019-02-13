@@ -1,10 +1,12 @@
 const Router = require('koa-router');
 const router = new Router();
+const machineController = require('./controllers/MachineController');
+const validate = require('./validators/Validators');
 
-router.get('/', ctx => {
-  ctx.body = {
-    greetings: 'It\'s magic!'
-  };
-});
+router.post(
+  '/machines',
+  validate.machine.machineCreation,
+  machineController.createMachine
+);
 
 module.exports = router.routes();
