@@ -1,7 +1,7 @@
 FROM node
 
-RUN mkdir /magic_app
-WORKDIR /magic_app
+RUN mkdir /super-snacks-api
+WORKDIR /super-snacks-api
 
 COPY package*.json ./
 

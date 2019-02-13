@@ -1,11 +1,11 @@
 version: "2"
 services:
-  magic_app:
-    container_name: magic_app
+  super-snacks-api:
+    container_name: super-snacks-api
     command: bash -c "npm install && npm run start-dev"
     build: .
     volumes:
-      - .:/magic_app
+      - .:/super-snacks-api
     depends_on:
       - mongo
     links:
@@ -13,11 +13,11 @@ services:
     ports:
       - "3000:3000"
   mongo:
-    container_name: mongo
+    container_name: super-snacks-db
     image: mongo
     environment:
-      - MONGO_INITDB_DATABASE=magic_db
+      - MONGO_INITDB_DATABASE=super-snacks-db
     volumes:
-      - ./mongo_data:/data/db
+      - ./.mongo_data:/data/db
     ports:
       - "27017:27017"

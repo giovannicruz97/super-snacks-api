@@ -1,7 +1,7 @@
 {
-  "name": "magic",
+  "name": "super-snacks-api",
   "version": "1.0.0",
-  "description": "Async ready node.js RESTful API boilerplate",
+  "description": "API RESTful para controle de máquinas de snacks da Super Coffee MT LTDA",
   "main": "app.js",
   "scripts": {
     "test": "./node_modules/.bin/jest",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/giovannicruz97/magic.git"
+    "url": "git+https://github.com/giovannicruz97/super-snacks-api.git"
   },
   "keywords": [
     "api",
@@ -23,9 +23,9 @@
   "author": "Giovanni Cruz <giovanni.cruz97@hotmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/giovannicruz97/magic/issues"
+    "url": "https://github.com/giovannicruz97/super-snacks-api.gitissues"
   },
-  "homepage": "https://github.com/giovannicruz97/magic#readme",
+  "homepage": "https://github.com/giovannicruz97/super-snacks-api.git#readme",
   "dependencies": {
     "@koa/cors": "^2.2.3",
     "dotenv": "^6.2.0",
