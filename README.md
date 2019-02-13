@@ -31,6 +31,37 @@ A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o flux
 - [ ] Débito de saldo do cartão
 - [ ] Recarga de saldo de cartão
 
+## Coleções (MongoDB)
+
+**Cards**
+
+```
+{
+  credits: float,
+  lastEntry: date,
+  reloadedToday: boolean
+}
+```
+
+**Machines**
+
+```
+{
+  name: string,
+  location: string,
+  hash: string
+}
+```
+
+**Products**
+
+```
+{
+  name: string,
+  price: float
+}
+```
+
 ## Rotas/Endpoints
 
 - A documentação das rotas podem ser visualizadas [aqui]('#')
