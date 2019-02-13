@@ -28,7 +28,6 @@ A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o flux
 - [ ] CRUD de produtos
 - [ ] CRUD de cartões
 - [ ] Lançamento de venda
-- [ ] Débito de saldo do cartão
 - [ ] Recarga de saldo de cartão
 
 ## Coleções (MongoDB)
