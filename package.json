@@ -4,7 +4,7 @@
   "description": "API RESTful para controle de máquinas de snacks da Super Coffee MT LTDA",
   "main": "app.js",
   "scripts": {
-    "test": "./node_modules/.bin/jest",
+    "test": "./node_modules/.bin/jest --forceExit --detectOpenHandles",
     "start": "node bin/server.js",
     "start-dev": "./node_modules/.bin/nodemon bin/server.js"
   },
@@ -28,9 +28,12 @@
   "homepage": "https://github.com/giovannicruz97/super-snacks-api.git#readme",
   "dependencies": {
     "@koa/cors": "^2.2.3",
+    "bcrypt": "^3.0.4",
     "dotenv": "^6.2.0",
+    "joi": "^14.3.1",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
+    "koa-joi-validate": "^0.5.1",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "mongoose": "^5.4.10"
