@@ -36,7 +36,8 @@ A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o flux
 
 ```
 {
-  credits: float,
+  currentCredit: float,
+  defaultCredit: float,
   lastEntry: date,
   reloadedToday: boolean
 }
