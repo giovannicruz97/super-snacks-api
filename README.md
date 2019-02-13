@@ -1,8 +1,8 @@
-# SUPER SNACKS API
+# :cookie: SUPER SNACKS API
 
 ![](https://media.giphy.com/media/xT5LMW6nbTu8pUHZgA/giphy.gif)
 
-:cookie: A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o fluxo de vendas das máquinas de snacks da Super Coffee MT LTDA. O acesso aos produtos dessas máquinas se dá, através de cartões magnéticos, os quais têm seus créditos renovados todos os dias, de acordo com o valor estabelecido em contrato.
+A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o fluxo de vendas das máquinas de snacks da Super Coffee MT LTDA. O acesso aos produtos dessas máquinas se dá, através de cartões magnéticos, os quais têm seus créditos renovados todos os dias, de acordo com o valor estabelecido em contrato.
 
 ## Requerimentos
 
