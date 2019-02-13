@@ -12,6 +12,17 @@ const machineCreation = validate({
   }
 });
 
+const machineAuth = validate({
+  body: {
+    name: joi.string().required(),
+    hash: joi
+      .string()
+      .regex(/^(?=.*[a-zA-Z\d].*)[a-zA-Z\d!@#$%&*]{8,16}$/)
+      .required()
+  }
+});
+
 module.exports = {
-  machineCreation
+  machineCreation,
+  machineAuth
 };
