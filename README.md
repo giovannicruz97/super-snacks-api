@@ -25,7 +25,7 @@ A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o flux
 
 - [x] Autenticação via JWT por máquina
 - [x] Cadastro de máquina
-- [ ] Atualização de máquina
+- [x] Atualização de máquina
 - [ ] Visualização de máquina
 - [ ] Remoção de máquina
 - [ ] Criação de produto
