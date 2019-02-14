@@ -16,4 +16,10 @@ function createToken(machineData) {
   });
 }
 
-module.exports = { createHash, createToken, verifyHash };
+function extractToken(token) {
+  let filteredToken = token.split('Bearer ')[1];
+  let decoded = jwt.decode(filteredToken);
+  return decoded;
+}
+
+module.exports = { createHash, createToken, verifyHash, extractToken };
