@@ -27,7 +27,7 @@ A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o flux
 - [x] Cadastro de máquina
 - [x] Atualização de máquina
 - [x] Visualização de máquina
-- [ ] Remoção de máquina
+- [x] Remoção de máquina
 - [ ] Criação de produto
 - [ ] Atualização de produto
 - [ ] Visualização de produto
