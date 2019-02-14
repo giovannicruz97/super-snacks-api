@@ -25,6 +25,13 @@ router.get(
   machineController.findMachines
 );
 
+router.delete(
+  '/machines',
+  validate.machine.machineRemoval,
+  jwt,
+  machineController.removeMachine
+);
+
 router.post('/auth', validate.machine.machineAuth, authController.authenticate);
 
 module.exports = router.routes();

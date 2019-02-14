@@ -31,6 +31,7 @@
     "bcrypt": "^3.0.4",
     "dotenv": "^6.2.0",
     "joi": "^14.3.1",
+    "joi-objectid": "^2.0.0",
     "jsonwebtoken": "^8.4.0",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",

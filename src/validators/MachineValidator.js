@@ -1,4 +1,5 @@
-const joi = require('joi');
+let joi = require('joi');
+joi.objectId = require('joi-objectid')(joi);
 const validate = require('koa-joi-validate');
 
 const machineCreation = validate({
@@ -29,8 +30,15 @@ const machineFetching = validate({
   }
 });
 
+const machineRemoval = validate({
+  query: {
+    machineId: joi.objectId().required()
+  }
+});
+
 module.exports = {
   machineCreation,
   machineAuth,
-  machineFetching
+  machineFetching,
+  machineRemoval
 };

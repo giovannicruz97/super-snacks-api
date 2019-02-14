@@ -111,4 +111,21 @@ async function findMachines(ctx) {
   };
 }
 
-module.exports = { createMachine, updateMachine, findMachines };
+async function removeMachine(ctx) {
+  let machineId = ctx.query.machineId;
+  let removedMachine = await Machine.findOneAndRemove({ _id: machineId });
+
+  if (!removedMachine) {
+    ctx.status = 404;
+    ctx.body = {
+      message: 'Máquina não encontrada'
+    };
+    return;
+  }
+
+  ctx.body = {
+    message: `Máquina ID ${machineId} removida`
+  };
+}
+
+module.exports = { createMachine, updateMachine, findMachines, removeMachine };
