@@ -3,17 +3,6 @@ const hashService = require('../services/HashService');
 
 async function createMachine(ctx) {
   let postData = ctx.request.body;
-  let foundMachine = await Machine.findOne({
-    name: postData.name
-  });
-
-  if (foundMachine) {
-    ctx.status = 400;
-    ctx.body = {
-      message: 'Máquina já cadastrada'
-    };
-    return;
-  }
 
   let encrypted = await hashService.createHash(postData.hash);
 
@@ -26,7 +15,7 @@ async function createMachine(ctx) {
     ctx.body = {
       message: 'Máquina cadastrada com sucesso',
       data: {
-        machine: createdMachine
+        machines: [createdMachine]
       }
     };
   } catch (error) {
@@ -40,22 +29,11 @@ async function createMachine(ctx) {
 
 async function updateMachine(ctx) {
   let postData = ctx.request.body;
-  let decoded = await hashService.extractToken(ctx.header.authorization);
-  let machineId = decoded.data.machineId;
-  let foundMachine = await Machine.findOne({ _id: machineId });
-
-  if (!foundMachine) {
-    ctx.status = 404;
-    ctx.body = {
-      message: 'Máquina não encontrada'
-    };
-    return;
-  }
 
   let encrypted = await hashService.createHash(postData.hash);
   try {
-    let updatedMachine = await Machine.findOneAndUpdate(
-      { _id: machineId },
+    let updatedMachine = await Machine.findByIdAndUpdate(
+      postData.machineId,
       {
         name: postData.name,
         location: postData.location,
@@ -66,9 +44,7 @@ async function updateMachine(ctx) {
     ctx.body = {
       message: 'Máquina atualizada com sucesso',
       data: {
-        machine: {
-          updatedMachine
-        }
+        machines: [updatedMachine]
       }
     };
   } catch (error) {
@@ -106,22 +82,14 @@ async function findMachines(ctx) {
   ctx.body = {
     message: 'Máquina encontrada',
     data: {
-      machine: foundMachine
+      machines: foundMachine
     }
   };
 }
 
 async function removeMachine(ctx) {
   let machineId = ctx.query.machineId;
-  let removedMachine = await Machine.findOneAndRemove({ _id: machineId });
-
-  if (!removedMachine) {
-    ctx.status = 404;
-    ctx.body = {
-      message: 'Máquina não encontrada'
-    };
-    return;
-  }
+  await Machine.findOneAndRemove({ _id: machineId });
 
   ctx.body = {
     message: `Máquina ID ${machineId} removida`

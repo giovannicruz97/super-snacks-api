@@ -2,6 +2,7 @@ const Router = require('koa-router');
 const router = new Router();
 const jwt = require('./middlewares/JwtMiddleware');
 const machineController = require('./controllers/MachineController');
+const machineMiddleware = require('./middlewares/MachineMiddleware');
 const productController = require('./controllers/ProductControllers');
 const productMiddleware = require('./middlewares/ProductMiddleware');
 const authController = require('./controllers/AuthController');
@@ -12,13 +13,15 @@ router.post('/auth', validate.machine.machineAuth, authController.authenticate);
 router.post(
   '/machines',
   validate.machine.machineCreation,
+  machineMiddleware.doesMachineExist,
   machineController.createMachine
 );
 
 router.patch(
   '/machines',
-  validate.machine.machineCreation,
+  validate.machine.machineUpdate,
   jwt,
+  machineMiddleware.doesNotMachineExist,
   machineController.updateMachine
 );
 
@@ -33,6 +36,7 @@ router.delete(
   '/machines',
   validate.machine.machineRemoval,
   jwt,
+  machineMiddleware.doesNotMachineExist,
   machineController.removeMachine
 );
 

@@ -13,6 +13,18 @@ const machineCreation = validate({
   }
 });
 
+const machineUpdate = validate({
+  body: {
+    machineId: joi.objectId().required(),
+    name: joi.string().required(),
+    location: joi.string().required(),
+    hash: joi
+      .string()
+      .regex(/^(?=.*[a-zA-Z\d].*)[a-zA-Z\d!@#$%&*]{8,16}$/)
+      .required()
+  }
+});
+
 const machineAuth = validate({
   body: {
     name: joi.string().required(),
@@ -40,5 +52,6 @@ module.exports = {
   machineCreation,
   machineAuth,
   machineFetching,
-  machineRemoval
+  machineRemoval,
+  machineUpdate
 };
