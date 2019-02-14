@@ -28,10 +28,10 @@ A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o flux
 - [x] Atualização de máquina
 - [x] Visualização de máquina
 - [x] Remoção de máquina
-- [ ] Criação de produto
-- [ ] Atualização de produto
-- [ ] Visualização de produto
-- [ ] Remoção de produto
+- [x] Criação de produto
+- [x] Atualização de produto
+- [x] Visualização de produto
+- [x] Remoção de produto
 - [ ] Cadastro de cartão
 - [ ] Remoção de cartão
 - [ ] Visualização de saldo do cartão
