@@ -18,6 +18,13 @@ router.patch(
   machineController.updateMachine
 );
 
+router.get(
+  '/machines',
+  validate.machine.machineFetching,
+  jwt,
+  machineController.findMachines
+);
+
 router.post('/auth', validate.machine.machineAuth, authController.authenticate);
 
 module.exports = router.routes();

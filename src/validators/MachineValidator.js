@@ -22,7 +22,15 @@ const machineAuth = validate({
   }
 });
 
+const machineFetching = validate({
+  query: {
+    name: joi.string().optional(),
+    location: joi.string().optional()
+  }
+});
+
 module.exports = {
   machineCreation,
-  machineAuth
+  machineAuth,
+  machineFetching
 };

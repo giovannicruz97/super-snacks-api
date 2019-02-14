@@ -80,4 +80,35 @@ async function updateMachine(ctx) {
   }
 }
 
-module.exports = { createMachine, updateMachine };
+async function findMachines(ctx) {
+  let filter = ctx.query;
+
+  if (!('location' in filter) && !('name' in filter)) {
+    let foundMachines = await Machine.find({}).select({ __v: false });
+    ctx.body = {
+      message: `Total de ${foundMachines.length} máquina(s) encontrada(s)`,
+      data: {
+        machines: foundMachines
+      }
+    };
+    return;
+  }
+
+  let foundMachine = await Machine.find(filter).select({ __v: false });
+  if (foundMachine.length == 0) {
+    ctx.status = 404;
+    ctx.body = {
+      message: 'Máquina não encontrada'
+    };
+    return;
+  }
+
+  ctx.body = {
+    message: 'Máquina encontrada',
+    data: {
+      machine: foundMachine
+    }
+  };
+}
+
+module.exports = { createMachine, updateMachine, findMachines };

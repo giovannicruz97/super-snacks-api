@@ -89,4 +89,44 @@ describe('Testa a atualização de Máquina', () => {
   });
 });
 
+describe('Teste a visualização de Máquina(s)', () => {
+  it('Busca por várias máquinas', async done => {
+    let response = await request(app.callback())
+      .get('/machines')
+      .set('Authorization', 'Bearer ' + fakeJwtToken);
+    expect(response.status).toEqual(200);
+    done();
+  });
+
+  it('Busca por uma máquina específica', async done => {
+    delete fakeMachine._id;
+    await request(app.callback())
+      .post('/machines')
+      .set('Authorization', 'Bearer ' + fakeJwtToken)
+      .send(fakeMachine);
+
+    let response = await request(app.callback())
+      .get('/machines')
+      .set('Authorization', 'Bearer ' + fakeJwtToken)
+      .query({
+        name: 'maquina_fake_1',
+        location: 'Café Fake - Itaim Bibi, SP'
+      });
+    expect(response.status).toEqual(200);
+    fakeMachine._id = response.body.data.machine._id;
+    done();
+  });
+
+  it('Busca por uma máquina específica inválida ou não-existente', async done => {
+    let response = await request(app.callback())
+      .get('/machines')
+      .set('Authorization', 'Bearer ' + fakeJwtToken)
+      .query({
+        location: 'Terra de Oz'
+      });
+    expect(response.status).toEqual(404);
+    done();
+  });
+});
+
 afterEach(async () => await Machine.findOneAndDelete({ _id: fakeMachine._id }));
