@@ -23,6 +23,7 @@ async function authenticate(ctx) {
   }
 
   let token = hashService.createToken({
+    machineId: foundMachine._id,
     name: postData.name,
     location: foundMachine.location
   });
