@@ -5,6 +5,7 @@ const machineController = require('./controllers/MachineController');
 const machineMiddleware = require('./middlewares/MachineMiddleware');
 const productController = require('./controllers/ProductControllers');
 const productMiddleware = require('./middlewares/ProductMiddleware');
+const cardController = require('./controllers/CardController');
 const authController = require('./controllers/AuthController');
 const validate = require('./validators/Validators');
 
@@ -70,6 +71,13 @@ router.get(
   jwt,
   productMiddleware.doesNotProductExist,
   productController.findProducts
+);
+
+router.post(
+  '/cards',
+  validate.card.cardCreation,
+  jwt,
+  cardController.createCard
 );
 
 module.exports = router.routes();
