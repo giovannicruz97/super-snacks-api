@@ -1,11 +1,23 @@
 const mongoose = require('mongoose');
 
-let host = process.env.DB_HOST;
-let port = process.env.DB_PORT;
-let database = process.env.DB_DATABASE;
-
-mongoose.connect(`mongodb://${host}:${port}/${database}`, {
-  useNewUrlParser: true
-});
+if (process.env.APP_MODE == 'test') {
+  mongoose.connect(
+    `mongodb://${process.env.DB_HOST_TEST}:${process.env.DB_PORT_TEST}/${
+      process.env.DB_DATABASE_TEST
+    }`,
+    {
+      useNewUrlParser: true
+    }
+  );
+} else {
+  mongoose.connect(
+    `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${
+      process.env.DB_DATABASE
+    }`,
+    {
+      useNewUrlParser: true
+    }
+  );
+}
 
 module.exports = mongoose;

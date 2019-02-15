@@ -7,17 +7,28 @@ services:
     volumes:
       - .:/super-snacks-api
     depends_on:
-      - mongo
+      - mongo-master
+      - mongo-test
     links:
-      - mongo
+      - mongo-master
+      - mongo-test
     ports:
       - "3000:3000"
-  mongo:
-    container_name: super-snacks-db
+  mongo-master:
+    container_name: super-snacks-db-master
     image: mongo
     environment:
-      - MONGO_INITDB_DATABASE=super-snacks-db
+      - MONGO_INITDB_DATABASE=super-snacks-db-master
     volumes:
-      - ./.mongo_data:/data/db
+      - ./.mongo_data-master:/data/db
     ports:
       - "27017:27017"
+  mongo-test:
+    container_name: super-snacks-db-test
+    image: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=super-snacks-db-test
+    volumes:
+      - ./.mongo_data-test:/data/db
+    ports:
+      - "27018:27017"
