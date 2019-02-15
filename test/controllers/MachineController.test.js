@@ -24,7 +24,7 @@ describe('Testa a criação de máquinas', () => {
         hash: 'marvingaye'
       });
     expect(response.status).toEqual(200);
-    let machineId = response.body.data.machine._id;
+    let machineId = response.body.data.machine._id.toString();
     await request(app.callback())
       .delete('/machines')
       .set('Authorization', 'Bearer ' + jwt)

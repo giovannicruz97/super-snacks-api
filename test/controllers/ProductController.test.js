@@ -39,7 +39,7 @@ describe('Testa a criação de produtos', () => {
         name: 'Produto 30',
         price: 3.5
       });
-    await Product.findByIdAndDelete(response.body.data.product._id);
+    await Product.findByIdAndDelete(response.body.data.product._id.toString());
     expect(response.status).toEqual(200);
     await done();
   });
