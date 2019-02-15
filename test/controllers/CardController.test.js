@@ -27,6 +27,16 @@ describe('Testa a criação de um cartão', () => {
     expect(response.status).toEqual(200);
     await done();
   });
+  it('Visualiza o saldo do cartão', async done => {
+    let response = await request(app.callback())
+      .get('/cards')
+      .set('Authorization', 'Bearer ' + jwt)
+      .query({
+        cardId: cardId
+      });
+    expect(response.status).toEqual(200);
+    await done();
+  });
   it('Remove um cartão', async done => {
     let response = await request(app.callback())
       .delete('/cards')
@@ -37,6 +47,5 @@ describe('Testa a criação de um cartão', () => {
     expect(response.status).toEqual(200);
     await done();
   });
-  // it('Atualiza um cartão', async done => {});
   // it('Cria um novo cartão', async done => {});
 });

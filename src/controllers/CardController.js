@@ -17,4 +17,27 @@ async function removeCard(ctx) {
   };
 }
 
-module.exports = { createCard, removeCard };
+async function findCards(ctx) {
+  let filter = ctx.query;
+
+  if (!('cardId' in filter)) {
+    let foundCards = await Card.find({}).select({ __v: false });
+    ctx.body = {
+      message: `Total de ${foundCards.length} cartão(ões) encontrado(s)`,
+      data: {
+        cards: foundCards
+      }
+    };
+    return;
+  }
+
+  let foundCard = await Card.find({ _id: filter.cardId });
+  ctx.body = {
+    message: 'Cartão encontrado',
+    data: {
+      cards: foundCard
+    }
+  };
+}
+
+module.exports = { createCard, removeCard, findCards };

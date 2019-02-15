@@ -93,4 +93,12 @@ router.delete(
   cardController.removeCard
 );
 
+router.get(
+  '/cards',
+  validate.card.cardFetching,
+  jwt,
+  cardMiddleware.doesNotCardExist,
+  cardController.findCards
+);
+
 module.exports = router.routes();
