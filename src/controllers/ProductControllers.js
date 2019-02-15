@@ -40,4 +40,27 @@ async function removeProduct(ctx) {
   };
 }
 
-module.exports = { createProduct, updateProduct, removeProduct };
+async function findProducts(ctx) {
+  let filter = ctx.query;
+
+  if (!('name' in filter)) {
+    let foundProducts = await Product.find({}).select({ __v: false });
+    ctx.body = {
+      message: `Total de ${foundProducts.length} produto(s) encontrado(s)`,
+      data: {
+        products: foundProducts
+      }
+    };
+    return;
+  }
+
+  let foundProduct = await Product.find(filter);
+  ctx.body = {
+    message: 'Produto encontrado',
+    data: {
+      products: foundProduct
+    }
+  };
+}
+
+module.exports = { createProduct, updateProduct, removeProduct, findProducts };

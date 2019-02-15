@@ -17,9 +17,17 @@ async function doesProductExist(ctx, next) {
 }
 
 async function doesNotProductExist(ctx, next) {
-  let filter = ctx.request.body.productId
-    ? { _id: ctx.request.body.productId }
-    : { _id: ctx.query.productId };
+  let filter = ctx.request.body.productId || null;
+
+  if (!filter) {
+    if (ctx.query.productId) {
+      filter = { _id: ctx.query.productId };
+    }
+    if (ctx.query.name) {
+      filter = { name: ctx.query.name };
+    }
+  }
+
   let foundProduct = await Product.findOne(filter);
 
   if (!foundProduct) {

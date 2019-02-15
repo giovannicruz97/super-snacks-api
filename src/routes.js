@@ -64,4 +64,12 @@ router.delete(
   productController.removeProduct
 );
 
+router.get(
+  '/products',
+  validate.product.productFetching,
+  jwt,
+  productMiddleware.doesNotProductExist,
+  productController.findProducts
+);
+
 module.exports = router.routes();

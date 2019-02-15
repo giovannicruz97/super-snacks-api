@@ -31,4 +31,15 @@ const productRemoval = validate({
   }
 });
 
-module.exports = { productCreation, productUpdate, productRemoval };
+const productFetching = validate({
+  query: {
+    name: joi.string().optional()
+  }
+});
+
+module.exports = {
+  productCreation,
+  productUpdate,
+  productRemoval,
+  productFetching
+};
