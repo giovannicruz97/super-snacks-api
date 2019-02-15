@@ -23,4 +23,16 @@ async function doesNotCardExist(ctx, next) {
   await next();
 }
 
-module.exports = { doesNotCardExist };
+async function isCardReloaded(ctx, next) {
+  if ('cardId' in ctx.query) {
+    let foundCard = await Card.findById(ctx.query.cardId);
+    if (!foundCard.reloadedToday) {
+      foundCard.currentCredit = foundCard.defaultCredit;
+      foundCard.reloadedToday = true;
+    }
+    await Card.findByIdAndUpdate(ctx.query.cardId, foundCard);
+  }
+  await next();
+}
+
+module.exports = { doesNotCardExist, isCardReloaded };

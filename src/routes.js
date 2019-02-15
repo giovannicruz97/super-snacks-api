@@ -98,6 +98,7 @@ router.get(
   validate.card.cardFetching,
   jwt,
   cardMiddleware.doesNotCardExist,
+  cardMiddleware.isCardReloaded,
   cardController.findCards
 );
 
