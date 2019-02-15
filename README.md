@@ -21,7 +21,7 @@ A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o flux
 
 - Para executar os testes, os contâneire Docker devem estar rodando, a variável de ambiente `APP_MODE` deve ser igual a `test`, pois assim os testes rodaram no banco MongoDB do ambiente de testes. **Todas as alterações no arquivo `.env`, implicam em reinicio da aplicação**. Isso pode ser feito através do comando `docker-compose restart`. Após isso, execute: `docker exec super-snacks-api npm test`
 
-- Existe uma suíte de testes dedicada somente para a simulação do desafio proposto:
+- Existe uma suíte de testes dedicada somente para a simulação do desafio proposto, em `test/challenge/VendingMachineCase.test.js`:
   1. Inserção do cartão
   2. Atualização com o saldo diário disponível, registrado em contrato e exibição do saldo atual.
   3. Registro de venda e débito do saldo atual.
