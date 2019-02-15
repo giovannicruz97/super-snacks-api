@@ -35,7 +35,8 @@ A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o flux
 - [x] Cadastro de cartão
 - [x] Remoção de cartão
 - [x] Visualização de saldo do cartão
-- [ ] Recarga diária do saldo do cartão (CRON)
+- [x] Recarga diária do saldo do cartão
+- [ ] Reset de créditos de cartão (CRON)
 - [ ] Débito de créditos do cartão
 
 ## Coleções (MongoDB)
