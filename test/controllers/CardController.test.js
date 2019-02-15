@@ -47,5 +47,4 @@ describe('Testa a criação de um cartão', () => {
     expect(response.status).toEqual(200);
     await done();
   });
-  // it('Cria um novo cartão', async done => {});
 });

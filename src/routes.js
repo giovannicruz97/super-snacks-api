@@ -102,4 +102,6 @@ router.get(
   cardController.findCards
 );
 
+router.get('/cards/reset', jwt, cardController.resetAllCards);
+
 module.exports = router.routes();

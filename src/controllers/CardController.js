@@ -40,4 +40,11 @@ async function findCards(ctx) {
   };
 }
 
-module.exports = { createCard, removeCard, findCards };
+async function resetAllCards(ctx) {
+  await Card.updateMany({}, { reloadedToday: false, currentCredit: 0 });
+  ctx.body = {
+    message: 'Cartões resetados com sucesso'
+  };
+}
+
+module.exports = { createCard, removeCard, findCards, resetAllCards };
