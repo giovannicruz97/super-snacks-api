@@ -2,6 +2,7 @@ const app = require('../../app');
 const request = require('supertest');
 
 let jwt;
+let cardId;
 
 beforeAll(async () => {
   let secondRequest = await request(app.callback())
@@ -22,10 +23,20 @@ describe('Testa a criação de um cartão', () => {
       .send({
         defaultCredit: 20
       });
+    cardId = response.body.data.card._id.toString();
+    expect(response.status).toEqual(200);
+    await done();
+  });
+  it('Remove um cartão', async done => {
+    let response = await request(app.callback())
+      .delete('/cards')
+      .set('Authorization', 'Bearer ' + jwt)
+      .query({
+        cardId: cardId
+      });
     expect(response.status).toEqual(200);
     await done();
   });
   // it('Atualiza um cartão', async done => {});
-  // it('Remove um cartão', async done => {});
   // it('Cria um novo cartão', async done => {});
 });

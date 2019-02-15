@@ -11,4 +11,10 @@ const cardCreation = validate({
   }
 });
 
-module.exports = { cardCreation };
+const cardRemoval = validate({
+  query: {
+    cardId: joi.objectId().required()
+  }
+});
+
+module.exports = { cardCreation, cardRemoval };

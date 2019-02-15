@@ -1,11 +1,16 @@
 const Router = require('koa-router');
 const router = new Router();
 const jwt = require('./middlewares/JwtMiddleware');
+
 const machineController = require('./controllers/MachineController');
 const machineMiddleware = require('./middlewares/MachineMiddleware');
+
 const productController = require('./controllers/ProductControllers');
 const productMiddleware = require('./middlewares/ProductMiddleware');
+
 const cardController = require('./controllers/CardController');
+const cardMiddleware = require('./middlewares/CardMiddleware');
+
 const authController = require('./controllers/AuthController');
 const validate = require('./validators/Validators');
 
@@ -78,6 +83,14 @@ router.post(
   validate.card.cardCreation,
   jwt,
   cardController.createCard
+);
+
+router.delete(
+  '/cards',
+  validate.card.cardRemoval,
+  jwt,
+  cardMiddleware.doesNotCardExist,
+  cardController.removeCard
 );
 
 module.exports = router.routes();
