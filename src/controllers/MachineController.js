@@ -6,54 +6,38 @@ async function createMachine(ctx) {
 
   let encrypted = await hashService.createHash(postData.hash);
 
-  try {
-    let createdMachine = await Machine.create({
-      name: postData.name,
-      location: postData.location,
-      hash: encrypted
-    });
-    ctx.body = {
-      message: 'Máquina cadastrada com sucesso',
-      data: {
-        machines: [createdMachine]
-      }
-    };
-  } catch (error) {
-    ctx.status = 500;
-    ctx.body = {
-      message: 'Ops, algo aconteceu com a API',
-      serverMessage: error.message
-    };
-  }
+  let createdMachine = await Machine.create({
+    name: postData.name,
+    location: postData.location,
+    hash: encrypted
+  });
+  ctx.body = {
+    message: 'Máquina cadastrada com sucesso',
+    data: {
+      machine: createdMachine
+    }
+  };
 }
 
 async function updateMachine(ctx) {
   let postData = ctx.request.body;
 
   let encrypted = await hashService.createHash(postData.hash);
-  try {
-    let updatedMachine = await Machine.findByIdAndUpdate(
-      postData.machineId,
-      {
-        name: postData.name,
-        location: postData.location,
-        hash: encrypted
-      },
-      { new: true }
-    );
-    ctx.body = {
-      message: 'Máquina atualizada com sucesso',
-      data: {
-        machines: [updatedMachine]
-      }
-    };
-  } catch (error) {
-    ctx.status = 500;
-    ctx.body = {
-      message: 'Ops, algo aconteceu com a API',
-      serverMessage: error.message
-    };
-  }
+  let updatedMachine = await Machine.findByIdAndUpdate(
+    postData.machineId,
+    {
+      name: postData.name,
+      location: postData.location,
+      hash: encrypted
+    },
+    { new: true }
+  );
+  ctx.body = {
+    message: 'Máquina atualizada com sucesso',
+    data: {
+      machine: updatedMachine
+    }
+  };
 }
 
 async function findMachines(ctx) {

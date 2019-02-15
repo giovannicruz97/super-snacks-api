@@ -14,21 +14,18 @@ beforeAll(async () => {
   jwt = newToken;
 });
 
-describe('Testa a criação de máquinas', () => {
-  it('Cria uma nova máquina', async done => {
+describe('Testa a criação de um cartão', () => {
+  it('Cria um novo cartão', async done => {
     let response = await request(app.callback())
-      .post('/machines')
+      .post('/cards')
+      .set('Authorization', 'Bearer ' + jwt)
       .send({
-        name: 'maquina_muito_teste',
-        location: 'Somewhere, Over the rainbow',
-        hash: 'marvingaye'
+        defaultCredit: 20
       });
     expect(response.status).toEqual(200);
-    let machineId = response.body.data.machine._id;
-    await request(app.callback())
-      .delete('/machines')
-      .set('Authorization', 'Bearer ' + jwt)
-      .query({ machineId: machineId });
     await done();
   });
+  // it('Atualiza um cartão', async done => {});
+  // it('Remove um cartão', async done => {});
+  // it('Cria um novo cartão', async done => {});
 });

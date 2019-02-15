@@ -5,13 +5,19 @@ const Product = require('../../src/models/Product');
 let jwt;
 
 beforeAll(async () => {
-  await request(app.callback())
-    .post('/machines')
-    .send({
-      name: 'maquina_testes_admin_1',
-      location: 'Neverland',
-      hash: 'madalice'
-    });
+  if (
+    !(await Product.findOne({
+      name: 'maquina_testes_admin_1'
+    }))
+  ) {
+    await request(app.callback())
+      .post('/machines')
+      .send({
+        name: 'maquina_testes_admin_1',
+        location: 'Neverland',
+        hash: 'madalice'
+      });
+  }
 
   let secondRequest = await request(app.callback())
     .post('/auth')
@@ -35,7 +41,7 @@ describe('Testa a criação de produtos', () => {
       });
     await Product.findByIdAndDelete(response.body.data.product._id);
     expect(response.status).toEqual(200);
-    done();
+    await done();
   });
 
   it('Tenta criar um produto com mesmo nome', async done => {
@@ -53,7 +59,7 @@ describe('Testa a criação de produtos', () => {
       });
     expect(response.status).toEqual(400);
     await Product.deleteOne({ _id: product._id });
-    done();
+    await done();
   });
 });
 
@@ -74,7 +80,7 @@ describe('Testa a atualização de produtos', () => {
       });
     expect(response.status).toEqual(200);
     await Product.deleteOne({ _id: product._id });
-    done();
+    await done();
   });
 
   it('Tenta atualizar um produto não existente', async done => {
@@ -87,7 +93,7 @@ describe('Testa a atualização de produtos', () => {
         price: 3.0
       });
     expect(response.status).toEqual(400);
-    done();
+    await done();
   });
 });
 
@@ -105,7 +111,7 @@ describe('Testa a remoção de produtos', () => {
         productId: product._id.toString()
       });
     expect(response.status).toEqual(200);
-    done();
+    await done();
   });
   it('Tenta remover um produto inexistente', async done => {
     const response = await request(app.callback())
@@ -115,6 +121,6 @@ describe('Testa a remoção de produtos', () => {
         productId: '5c659adf393a2a3e2bbb0efd'
       });
     expect(response.status).toEqual(400);
-    done();
+    await done();
   });
 });
