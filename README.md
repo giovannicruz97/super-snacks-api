@@ -4,7 +4,7 @@
 
 A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o fluxo de vendas das máquinas de snacks da Super Coffee MT LTDA. O acesso aos produtos dessas máquinas se dá, através de cartões magnéticos, os quais têm seus créditos renovados todos os dias, de acordo com o valor estabelecido em contrato. Devem-se instalados nas máquinas algum espécie de microcomputador (Raspiberry or Arduino) que consiga realizar as chamadas REST através da placa de interface via HTTP para a API. Além disso, esse microcomputador deve ser capaz de armazenar o token JWT para as posteriores chamadas à API.
 
-## Requerimentos
+## Requisitos
 
 - [Docker](https://docs.docker.com/install/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
@@ -19,7 +19,13 @@ A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o flux
 
 ## Testes
 
-- Para executar os testes, execute: `docker exec super-snacks-api npm test`
+- Para executar os testes, os contâneire Docker devem estar rodando. Após isso, execute: `docker exec super-snacks-api npm test`
+
+- Existe uma suíte de testes dedicada somente para a simulação do desafio proposto:
+  1. Inserção do cartão
+  2. Atualização com o saldo diário disponível, registrado em contrato e exibição do saldo atual.
+  3. Registro de venda e débito do saldo atual.
+  4. Reset dos valores de saldo disponíveis no cartão para o valor inicial registrado em contrato, simulando uma cron job que deve ser executada após a virada do dia.
 
 ## Casos de uso
 
@@ -70,9 +76,13 @@ A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o flux
 }
 ```
 
+## Coleções (Postman)
+
+- As coleções para importação e realização de chamadas da API via Postman, podem ser baixadas [aqui](https://www.getpostman.com/collections/9b57a3e8f06683a71984)
+
 ## Rotas/Endpoints
 
-- A documentação das rotas podem ser visualizadas [aqui]('#')
+- A documentação das rotas podem ser visualizadas [aqui]('https://documenter.getpostman.com/view/954465/S11By2Pq')
 
 ## Contato
 
