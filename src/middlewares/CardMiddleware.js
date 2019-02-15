@@ -8,16 +8,17 @@ async function doesNotCardExist(ctx, next) {
   if (!filter) {
     if (ctx.query.cardId) {
       filter = { _id: ctx.query.cardId };
-      let foundCard = await Card.findOne(filter);
-
-      if (!foundCard) {
-        ctx.status = 400;
-        ctx.body = {
-          message: 'Cartão não cadastrado'
-        };
-        return;
-      }
     }
+  }
+
+  let foundCard = await Card.findOne(filter);
+
+  if (!foundCard) {
+    ctx.status = 400;
+    ctx.body = {
+      message: 'Cartão não cadastrado'
+    };
+    return;
   }
 
   await next();

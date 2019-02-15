@@ -11,6 +11,8 @@ const productMiddleware = require('./middlewares/ProductMiddleware');
 const cardController = require('./controllers/CardController');
 const cardMiddleware = require('./middlewares/CardMiddleware');
 
+const saleController = require('./controllers/SaleController');
+
 const authController = require('./controllers/AuthController');
 const validate = require('./validators/Validators');
 
@@ -103,5 +105,14 @@ router.get(
 );
 
 router.get('/cards/reset', jwt, cardController.resetAllCards);
+
+router.post(
+  '/sales',
+  validate.sale.saleCreation,
+  jwt,
+  productMiddleware.doesNotProductExist,
+  cardMiddleware.doesNotCardExist,
+  saleController.registerSale
+);
 
 module.exports = router.routes();
