@@ -82,7 +82,7 @@ A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o flux
 
 ## Rotas/Endpoints
 
-- A documentação das rotas podem ser visualizadas [aqui]('https://documenter.getpostman.com/view/954465/S11By2Pq')
+- A documentação das rotas podem ser visualizadas [aqui](https://documenter.getpostman.com/view/954465/S11By2Pq)
 
 ## Contato
 
