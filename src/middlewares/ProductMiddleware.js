@@ -17,7 +17,9 @@ async function doesProductExist(ctx, next) {
 }
 
 async function doesNotProductExist(ctx, next) {
-  let filter = ctx.request.body.productId || null;
+  let filter = ctx.request.body.productId
+    ? { _id: ctx.request.body.productId }
+    : null;
 
   if (!filter) {
     if (ctx.query.productId) {
