@@ -1,50 +1,64 @@
 const app = require('../../app');
 const request = require('supertest');
+const Card = require('../../src/models/Card');
+const Machine = require('../../src/models/Machine');
 
-let jwt;
+let token;
 let cardId;
 
 beforeAll(async () => {
-  let secondRequest = await request(app.callback())
+  // Criação de uma máquina
+  await request(app.callback())
+    .post('/machines')
+    .send({
+      name: 'maquina_de_testes_1',
+      location: 'Localização teste',
+      hash: 'senhateste123'
+    });
+
+  // Geração de token da máquina
+  let authRes = await request(app.callback())
     .post('/auth')
     .send({
-      name: 'maquina_testes_admin_1',
-      hash: 'madalice'
+      name: 'maquina_de_testes_1',
+      hash: 'senhateste123'
     });
-  let newToken = secondRequest.body.data.token;
-  jwt = newToken;
+  token = authRes.body.data.token;
 });
 
-describe('Testa a criação de um cartão', () => {
-  it('Cria um novo cartão', async done => {
-    let response = await request(app.callback())
+describe('Teste o CardController', () => {
+  it('Cria um cartão', async done => {
+    let cardRes = await request(app.callback())
       .post('/cards')
-      .set('Authorization', 'Bearer ' + jwt)
+      .set('Authorization', 'Bearer ' + token)
       .send({
-        defaultCredit: 20
+        defaultCredit: 35
       });
-    cardId = response.body.data.card._id.toString();
-    expect(response.status).toEqual(200);
+    cardId = cardRes.body.data.card._id.toString();
+    expect(cardRes.status).toEqual(200);
     await done();
   });
-  it('Visualiza o saldo do cartão', async done => {
-    let response = await request(app.callback())
+  it('Lista um cartão', async done => {
+    let cardRes = await request(app.callback())
       .get('/cards')
-      .set('Authorization', 'Bearer ' + jwt)
+      .set('Authorization', 'Bearer ' + token)
       .query({
         cardId: cardId
       });
-    expect(response.status).toEqual(200);
+    expect(cardRes.status).toEqual(200);
     await done();
   });
   it('Remove um cartão', async done => {
-    let response = await request(app.callback())
+    let cardRes = await request(app.callback())
       .delete('/cards')
-      .set('Authorization', 'Bearer ' + jwt)
-      .query({
-        cardId: cardId
-      });
-    expect(response.status).toEqual(200);
+      .set('Authorization', 'Bearer ' + token)
+      .query({ cardId: cardId });
+    expect(cardRes.status).toEqual(200);
     await done();
   });
+});
+
+afterAll(async () => {
+  await Card.deleteMany({});
+  await Machine.deleteMany({});
 });

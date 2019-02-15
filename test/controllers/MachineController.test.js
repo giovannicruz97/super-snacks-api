@@ -1,34 +1,64 @@
 const app = require('../../app');
 const request = require('supertest');
+const Machine = require('../../src/models/Machine');
 
-let jwt;
+let token;
+let machineId;
+let machineName;
 
-beforeAll(async () => {
-  let secondRequest = await request(app.callback())
-    .post('/auth')
-    .send({
-      name: 'maquina_testes_admin_1',
-      hash: 'madalice'
-    });
-  let newToken = secondRequest.body.data.token;
-  jwt = newToken;
-});
-
-describe('Testa a criação de máquinas', () => {
-  it('Cria uma nova máquina', async done => {
-    let response = await request(app.callback())
+describe('Testa o MachineController', () => {
+  it('Cria uma máquina', async done => {
+    let machineRes = await request(app.callback())
       .post('/machines')
       .send({
-        name: 'maquina_muito_teste',
-        location: 'Somewhere, Over the rainbow',
-        hash: 'marvingaye'
+        name: 'maquina_teste_2',
+        location: 'Localizacao Teste 2',
+        hash: 'senhadificil2'
       });
-    expect(response.status).toEqual(200);
-    let machineId = response.body.data.machine._id.toString();
-    await request(app.callback())
-      .delete('/machines')
-      .set('Authorization', 'Bearer ' + jwt)
-      .query({ machineId: machineId });
+    machineId = machineRes.body.data.machine._id.toString();
+    expect(machineRes.status).toEqual(200);
     await done();
   });
+  it('Atualiza uma máquina', async done => {
+    let authRes = await request(app.callback())
+      .post('/auth')
+      .send({
+        name: 'maquina_teste_2',
+        hash: 'senhadificil2'
+      });
+    token = authRes.body.data.token;
+
+    let machineRes = await request(app.callback())
+      .patch('/machines')
+      .set('Authorization', 'Bearer ' + token)
+      .send({
+        machineId: machineId,
+        name: 'maquina_atualizada_teste_2',
+        location: 'Localização Atualizada Teste 2',
+        hash: 'mudouasenha1'
+      });
+    machineName = machineRes.body.data.machine.name;
+    expect(machineRes.status).toEqual(200);
+    await done();
+  });
+  it('Busca uma máquina', async done => {
+    let machineRes = await request(app.callback())
+      .get('/machines')
+      .set('Authorization', 'Bearer ' + token)
+      .query({ name: machineName });
+    expect(machineRes.status).toEqual(200);
+    await done();
+  });
+  it('Remove uma máquina', async done => {
+    let machineRes = await request(app.callback())
+      .delete('/machines')
+      .set('Authorization', 'Bearer ' + token)
+      .query({ machineId: machineId });
+    expect(machineRes.status).toEqual(200);
+    await done();
+  });
+});
+
+afterAll(async () => {
+  await Machine.deleteMany({});
 });
