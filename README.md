@@ -13,19 +13,21 @@ A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o flux
 
 1. `git clone https://github.com/giovannicruz97/super-snacks-api`
 2. `cd /super-snacks-api`
-3. Crie um arquivo `.env` na raiz do projeto, baseado nas informações do arquivo `.env.example`
+3. Crie um arquivo `.env` na raiz do projeto, baseado nas informações do arquivo `.env.example`. Esse é o arquiv de ambiente principal da aplicação.
 4. `docker-compose up -d`
 5. Para acessar o bash do container da API, execute: `docker exec -it super-snacks-api bash`
+6. Para parar o funcionamento dos containers, execute: `docker-compose stop`
 
 ## Testes
 
-- Para executar os testes, os contâneire Docker devem estar rodando, a variável de ambiente `APP_MODE` deve ser igual a `test`, pois assim os testes rodaram no banco MongoDB do ambiente de testes. **Todas as alterações no arquivo `.env`, implicam em reinicio da aplicação**. Isso pode ser feito através do comando `docker-compose restart`. Após isso, execute: `docker exec super-snacks-api npm test`
+- Para executar os testes, os containers Docker devem estar rodando, a variável de ambiente `APP_MODE` deve ser igual a `test`, pois assim os testes rodaram no banco MongoDB do ambiente de testes. **Todas as alterações no arquivo `.env`, implicam em reinicio da aplicação**. Isso pode ser feito através do comando `docker-compose restart`. Após isso, execute: `docker exec super-snacks-api npm test`
 
 - Existe uma suíte de testes dedicada somente para a simulação do desafio proposto, em `test/challenge/VendingMachineCase.test.js`, o qual é responsável pelos seguintes passos lógicos:
-  1. Inserção do cartão
-  2. Atualização com o saldo diário disponível, registrado em contrato e exibição do saldo atual.
-  3. Registro de venda e débito do saldo atual.
-  4. Reset dos valores de saldo disponíveis no cartão para o valor inicial registrado em contrato, simulando uma cron job que deve ser executada após a virada do dia.
+
+1. Inserção do cartão
+2. Atualização com o saldo diário disponível, registrado em contrato e exibição do saldo atual.
+3. Registro de venda e débito do saldo atual.
+4. Reset dos valores de saldo disponíveis no cartão para o valor inicial registrado em contrato, simulando uma cron job que deve ser executada após a virada do dia.
 
 ## Casos de uso
 
