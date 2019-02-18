@@ -2,7 +2,7 @@
 
 ![](https://media.giphy.com/media/xT5LMW6nbTu8pUHZgA/giphy.gif)
 
-A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o fluxo de vendas das máquinas de snacks da Super Coffee MT LTDA. O acesso aos produtos dessas máquinas se dá, através de cartões magnéticos, os quais têm seus créditos renovados todos os dias, de acordo com o valor estabelecido em contrato. Devem-se instalados nas máquinas algum espécie de microcomputador (Raspiberry or Arduino) que consiga realizar as chamadas REST através da placa de interface via HTTP para a API. Além disso, esse microcomputador deve ser capaz de armazenar o token JWT para as posteriores chamadas à API.
+A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o fluxo de vendas das máquinas de snacks da Super Coffee MT LTDA. O acesso aos produtos dessas máquinas se dá, através de cartões magnéticos, os quais têm seus créditos renovados todos os dias, de acordo com o valor estabelecido em contrato com a empresa favorecida. Devem ser instaladas nas máquinas alguma espécie de microcomputador (Raspiberry or Arduino) que consiga realizar as chamadas REST através da placa de interface nativa da máquina via HTTP para a API. Além disso, esse microcomputador deve ser capaz de armazenar o token JWT para as posteriores chamadas à API.
 
 ## Requisitos
 
@@ -20,7 +20,7 @@ A Super Snacks API foi desenvolvida com o intuito de fornecer e controlar o flux
 
 ## Testes
 
-- Para executar os testes, os containers Docker devem estar rodando, a variável de ambiente `APP_MODE` deve ser igual a `test`, pois assim os testes rodaram no banco MongoDB do ambiente de testes. **Todas as alterações no arquivo `.env`, implicam em reinicio da aplicação**. Isso pode ser feito através do comando `docker-compose restart`. Após isso, execute: `docker exec super-snacks-api npm test`
+- Para executar os testes, os containers Docker devem estar rodando e a variável de ambiente `APP_MODE` (arquivo `.env`) deve ser igual a `test`, pois assim os testes serão executados no banco MongoDB do ambiente de testes. **Todas as alterações no arquivo `.env`, implicam em reinicio da aplicação**. Isso pode ser feito através do comando `docker-compose restart`. Após isso, execute: `docker exec super-snacks-api npm test`
 
 - Existe uma suíte de testes dedicada somente para a simulação do desafio proposto, em `test/challenge/VendingMachineCase.test.js`, o qual é responsável pelos seguintes passos lógicos:
 
